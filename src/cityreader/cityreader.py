@@ -31,10 +31,12 @@ def cityreader(cities=[]):
 
         next(csv_reader)
 
-        for row in csv_reader:
-            cities.append(City(row[0], row[3], row[4]))
   # For each city record, create a new City instance and add it to the 
   # `cities` list
+        cities = [City(row[0], row[3], row[4]) for row in csv_reader]
+
+        #for row in csv_reader:
+           # cities.append(City(row[0], row[3], row[4]))
     
     return cities
 

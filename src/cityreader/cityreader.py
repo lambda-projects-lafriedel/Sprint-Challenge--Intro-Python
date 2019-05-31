@@ -6,6 +6,9 @@ class City:
         self.name = name
         self.lat = float(lat)
         self.lon = float(lon)
+    
+    def __str__(self):
+      return f'"{c.name}", {c.lat},{c.lon}'
 
 # We have a collection of US cities with population over 750,000 stored in the
 # file "cities.csv". (CSV stands for "comma-separated values".)
@@ -26,19 +29,15 @@ cities = []
 
 def cityreader(cities=[]):
 
-  # Implement the functionality to read from the 'cities.csv' file
     with open('src/cityreader/cities.csv', 'r') as csv_file:
+
         csv_reader = csv.reader(csv_file)
 
-        #Skips first row of file (column headings)
+        # Skips first row of file (column headings)
         next(csv_reader)
 
-  # For each city record, create a new City instance and add it to the 
-  # `cities` list
-
-        # Note: Tried this list comp. It passed the test but nothing printed in the console.
+        # Note: Tried this list comp. It passed the test but nothing printed in the console:
         # cities = [City(row[0], row[3], row[4]) for row in csv_reader]
-
         for row in csv_reader:
            cities.append(City(row[0], row[3], row[4]))
     
@@ -46,9 +45,8 @@ def cityreader(cities=[]):
 
 cityreader(cities)
 
-# Print the list of cities (name, lat, lon), 1 record per line.
 for c in cities:
-    print(f'"{c.name}", {c.lat},{c.lon}')
+    print(c)
 
 # STRETCH GOAL!
 #
@@ -80,13 +78,13 @@ for c in cities:
 # Salt Lake City: (40.7774,-111.9301)
 
 # TODO Get latitude and longitude values from the user
-set_1 = input("Enter <lat1,lon1>: ")
-set_2 = input("Enter <lat2,lon2>: ")
+#set_1 = input("Enter <lat1,lon1>: ")
+#set_2 = input("Enter <lat2,lon2>: ")
 
 # import numpy
 
-float_set_1 = [float(set) for s in set_1]
-float_set_2 = [float(set) for s in set_2]
+#float_set_1 = [float(set) for s in set_1]
+#float_set_2 = [float(set) for s in set_2]
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     # within will hold the cities that fall within the specified region
@@ -104,4 +102,4 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     '''
     return within
 
-cityreader_stretch(float_set_1[0], float_set_1[1], float_set_2[0], float_set_2[1], cities)
+# cityreader_stretch(float_set_1[0], float_set_1[1], float_set_2[0], float_set_2[1], cities)

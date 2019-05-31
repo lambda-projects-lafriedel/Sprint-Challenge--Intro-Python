@@ -25,18 +25,22 @@ import csv
 cities = []
 
 def cityreader(cities=[]):
+
   # Implement the functionality to read from the 'cities.csv' file
     with open('src/cityreader/cities.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
 
+        #Skips first row of file (column headings)
         next(csv_reader)
 
   # For each city record, create a new City instance and add it to the 
   # `cities` list
-        cities = [City(row[0], row[3], row[4]) for row in csv_reader]
 
-        #for row in csv_reader:
-           # cities.append(City(row[0], row[3], row[4]))
+        # Note: Tried this list comp. It passed the test but nothing printed in the console.
+        # cities = [City(row[0], row[3], row[4]) for row in csv_reader]
+
+        for row in csv_reader:
+           cities.append(City(row[0], row[3], row[4]))
     
     return cities
 
@@ -76,13 +80,28 @@ for c in cities:
 # Salt Lake City: (40.7774,-111.9301)
 
 # TODO Get latitude and longitude values from the user
+set_1 = input("Enter <lat1,lon1>: ")
+set_2 = input("Enter <lat2,lon2>: ")
+
+# import numpy
+
+float_set_1 = [float(set) for s in set_1]
+float_set_2 = [float(set) for s in set_2]
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
-  # within will hold the cities that fall within the specified region
-  within = []
+    # within will hold the cities that fall within the specified region
+    within = []
 
-  # TODO Ensure that the lat and lon valuse are all floats
-  # Go through each city and check to see if it falls within 
-  # the specified coordinates.
+    # TODO Ensure that the lat and lon valuse are all floats
 
-  return within
+    # Go through each city and check to see if it falls within 
+    # the specified coordinates.
+    '''
+    for c in cities:
+        if (c.lat in numpy.arange(lat1, lat2) or c.lat in numpy.arange(lat2, lat1)) and \
+         (c.lon in numpy.arange(lon1, lon2) or c.lon in numpy.arange(lon2, lon1)):
+            within.append(c)
+    '''
+    return within
+
+cityreader_stretch(float_set_1[0], float_set_1[1], float_set_2[0], float_set_2[1], cities)
